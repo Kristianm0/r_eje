@@ -1,0 +1,75 @@
+#EDA scatter plot mtcars 📌
+
+#-------
+
+# EJEMPLO ◀️
+#scatter plot mtcars
+
+#Plot para llamar a un comando y hacer el estilo de grafica.
+#Entre los parentesis le damos los parametros de las columnas las cuales queremos relacionar.
+#Despues de los nombres de nuestras columnas ponemos un signo de $ y nuestras variables.
+#xlab y ylab. Ponemos los ejes xlab seguido del nombre, lo mismo con el eje y.
+#Main para darle un titulo.
+
+
+plot(mtcars$mpg - mtcars$cyl,
+     xlab= "cilindros", ylab = "millas por galon",
+     main= "relacion cilindros y millas por galon"
+     )
+
+# EJEMPLO ◀️
+qplot(mtcars$hp,
+     geom = "histogram",
+     xlab = "caballos de fuerza",
+     main = "carros segun caballos de fuerza")
+
+#qplot para hacer histogramas. le damos las columnas.
+#geons para especificar el tipo de figura, le damos un titulo. En este caso no hay Y..
+#xlab para el otro eje.
+# main para el titulo  del eje.
+
+# EJEMPLO ◀️
+ggplot(mtcars, aes(x=hp))+
+    geom_histogram()+
+    labs(x="caballos de fuerza", y="caballos de carros",
+      title= "caballos de fuerza en carros")
+      
+#Nota: ggplot para usarse debes isntalar el paquete con install packing ("ggplot") y usar el comando.
+#ggplot le damos la base de dato y luego las columnas.
+# Con aes le damos la parte estetica.
+# geon_histogram para poner el grafico. ponemos mas para escribir las etiquetas. le decimos los titulos de cada eje.
+# title para poner el titulo.
+
+
+# EJEMPLO ◀️
+##Con color y grueso de barra diferente
+ggplot(mtcars, aes(x=hp))+
+  geom_histogram(binwidth = 20)+
+  labs(x="caballos de fuerza", y="caballos de carros",
+       title= "caballos de fuerza en carros") +
+  theme(legend.position = "none")+
+  theme(panel.background = element_blank(), panel.grid.major = element_blank(),
+        panel.grid.minor = element_blank())
+
+# EJEMPLO ◀️
+# Este es un ejemplo de código en R que crea un histograma utilizando ggplot2.
+
+# Importamos la librería ggplot2
+library(ggplot2)
+
+# Creamos el histograma utilizando el conjunto de datos mtcars y la variable hp
+ggplot() + 
+  geom_histogram(data = mtcars, aes(x = hp), 
+                 fill = "blue", color = "red", 
+                 binwidth = 20) + 
+  # Agregamos etiquetas al eje x, al eje y y al título
+  labs(x = "caballos de fuerza", y = "caballos de carros", 
+       title = "caballos de fuerza en carros") + 
+  # Limitamos el eje x a un rango específico
+  xlim(c(80, 200)) + 
+  # Eliminamos la leyenda del gráfico
+  theme(legend.position = "none") + 
+  # Modificamos la apariencia del panel
+  theme(panel.background = element_blank(), 
+        panel.grid.major = element_blank(),
+        panel.grid.minor = element_blank())
